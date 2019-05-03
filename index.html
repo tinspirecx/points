@@ -1,5 +1,4 @@
 <link rel='stylesheet' href='https://bootswatch.com/3/paper/bootstrap.min.css'>
-
 <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -12,10 +11,65 @@
     messagingSenderId: "431723206881"
   };
   firebase.initializeApp(config);
+
+  service firebase.storage {
+    match /b/{bucket}/o {
+      match /{allPaths=**} {
+        allow read, write: if request.auth != null;
+      }
+    }
+  }
+
 </script>
 
-<div id='tallies'>
-<div class="jumbotron" style="user-select: none; text-align: center; cursor: pointer;" onmouseover="style = `user-select: none; text-align: center; cursor: hand;`" onclick="tally(0)"><h1>0</h1></div>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+</style>
+
+<!-- <div id='tallies'>
+<div class="jumbotron" style="user-select: none; text-align: center; cursor: pointer;" onmouseover="style = `user-select: none; text-align: center; cursor: hand;`" onclick="tally(0)">
+  <h1>0</h1>
+</div>
 </div>
 <script>
   function counter() {
@@ -25,7 +79,51 @@
   function tally(i) {
     document.getElementsByTagName("h1")[i].innerText = Number(document.getElementsByTagName("h1")[i].innerText) + 1;
   }
-</script>w
+</script>
 <div style='display: flex; justify-content: center'>
-<button style='z-index: 1278389127389127389712389129837128937891273127391273817238912; margin-top: 7px; bottom: 5; font-size: 75px; width: 150px; height: 150px; border-radius: 50%; padding-bottom: 75px' title="Add Counter" class='btn btn-primary' onclick='counter()'>+</button>
+<button style='z-index: 1278389127389127389712389129837128937891273127391273817238912; margin-top: 7px; bottom: 5; font-size: 75px; width: 150px; height: 150px; border-radius: 50%; padding-bottom: 75px' title="Add Counter" class='btn btn-primary' onclick='counter()'>+</button> -->
+<!-- </div> -->
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="https://firebasestorage.googleapis.com/v0/b/points-e910c.appspot.com/o/download.png?alt=media&token=22187d82-7661-41f1-bd47-52bd07d51d7f" alt="img" style="width:104px;height:142px;">
+
+      <h3>Hufflepuff</h3>
+      <h1>217</h1>
+      <button class="btn btn-success" style="border-radius: 100%;">+</button>
+      <button class="btn btn-danger" style="border-radius: 100%;">-</button>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="https://firebasestorage.googleapis.com/v0/b/points-e910c.appspot.com/o/Ravenclaw-Front-Render.png?alt=media&token=660f1b54-fc53-419f-8b5a-33f8c7760afc" alt="img" style="width:104px;height:142px;">
+      <h3>Ravenclaw</h3>
+    <h1>235</h1>
+      <button class="btn btn-success" style="border-radius: 100%;">+</button>
+      <button class="btn btn-danger" style="border-radius: 100%;">-</button>
+
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="https://firebasestorage.googleapis.com/v0/b/points-e910c.appspot.com/o/Slytherin-Front-Render.png?alt=media&token=4b4899e1-c819-488f-a654-7479d277d875" alt="img" style="width:104px;height:142px;">
+
+      <h3>Slytherin</h3>
+      <h1>345</h1>
+      <button class="btn btn-success" style="border-radius: 100%;">+</button>
+      <button class="btn btn-danger" style="border-radius: 100%;">-</button>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="https://firebasestorage.googleapis.com/v0/b/points-e910c.appspot.com/o/Gryffindor-Front-Render.png?alt=media&token=d4a2db1c-fc28-46d8-aab9-022b8999484e" alt="img" style="width:104px;height:142px;">
+
+      <h3>Gryffindor</h3>
+      <h1>192</h1>
+      <button class="btn btn-success" style="border-radius: 100%;">+</button>
+      <button class="btn btn-danger" style="border-radius: 100%;">-</button>
+  </div>
 </div>
